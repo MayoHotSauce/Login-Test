@@ -1,0 +1,60 @@
+#include <iostream.h>
+#include <stdio.h>
+#include <conio.h>
+#include "Header.h"
+
+int main(){
+
+     char kode[20],u[50],p[50];
+     char str [100]="abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*_";
+	  char karakter;
+
+head("HALAMAN LOGIN C++");
+   cout<<"<----Login Page, Enter Username and Password---->"<<endl;
+   ulang:
+   cout<<"Username  : ";gets(u);
+   cout<<"Password  : ";
+
+
+   for(int a=0;a<50;a++){
+       karakter=getch();
+
+      if(karakter=='\r'){
+			p[a]=0;
+         break;
+		}else if(karakter=='\b'){
+			if(a!=0)
+         cout<<"\b \b";
+			p[a]=0;
+			p[a-1]=0;
+			a-=2;
+
+         if(a<-1)a=-1;
+         continue;
+		}else if(strchr(strupr(str),karakter)-str<=35&&strchr(strupr(str),karakter)-str>=0){
+      	cout<<"X";
+         p[a]=karakter;
+      }else if(strchr(strlwr(str),karakter)-str<=35&&strchr(strlwr(str),karakter)-str>=0){
+      	cout<<"X";
+         p[a]=karakter;
+      }else{
+         if(a>0){
+           a-=1;
+         }
+      }
+	}
+
+   if((strcmp(u,"1234")==0)&&(strcmp(p,"4567")==0)){
+      clrscr();
+       cout<<"   <---Login Success--->"<<endl;
+       cout<<" ....................................."<<endl;
+   }else{
+   clrscr();
+   cout<<"        <---Login Failed--->    "<<endl;
+   cout<<"===        Incorrect Password / Username, Try Again    ===!"<<endl;
+     goto ulang;
+
+   }
+
+   getch();
+}
